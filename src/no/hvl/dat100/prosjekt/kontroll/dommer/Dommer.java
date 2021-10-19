@@ -66,13 +66,13 @@ public class Dommer {
 		nordHand = toArrayList(spill.getNord().getHand());
 		sydHand = toArrayList(spill.getSyd().getHand());
 
-		LOGGER.info("Nord har " + nordHand.toString() + " ved start.");
-		LOGGER.info("Syd har " + sydHand.toString() + " ved start.");
+//		LOGGER.info("Nord har " + nordHand.toString() + " ved start.");
+//		LOGGER.info("Syd har " + sydHand.toString() + " ved start.");
 
 		korrekt = (sydHand.size() == Spill.ANTALL_KORT_START) && (nordHand.size() == Spill.ANTALL_KORT_START);
 
 		if (!korrekt) {
-			LOGGER.warning(": kort ikke korrekt delt ut");
+//			LOGGER.warning(": kort ikke korrekt delt ut");
 		}
 
 		return korrekt;
@@ -86,7 +86,7 @@ public class Dommer {
 		if (korrekt) {
 			overste = spill.getBord().seOversteBunkeTil();
 		} else {
-			LOGGER.warning(": ikke korrekt antall kort i tilbunke ved start");
+//			LOGGER.warning(": ikke korrekt antall kort i tilbunke ved start");
 		}
 
 		return korrekt;
@@ -102,7 +102,7 @@ public class Dommer {
 			antalltrekk++;
 		}
 
-		LOGGER.info(spiller + " trekker " + kort + " fra bunken med " + antalltrekk + "trekk");
+//		LOGGER.info(spiller + " trekker " + kort + " fra bunken med " + antalltrekk + "trekk");
 	}
 
 	private ArrayList<Kort> getHand(ISpiller spiller) {
@@ -143,8 +143,8 @@ public class Dommer {
 		boolean ok = false;
 		String handlingstr = "[ " + spiller.hvem() + " " + handling + " med " + antalltrekk + " trekk ] ";
 
-		LOGGER.info("================================================");
-		LOGGER.info("Sjekker " + handlingstr);
+//		LOGGER.info("================================================");
+//		LOGGER.info("Sjekker " + handlingstr);
 
 		switch (handling.getType()) {
 		case TREKK:
@@ -159,7 +159,7 @@ public class Dommer {
 		}
 
 		if (!ok) {
-			LOGGER.severe("Ulovlig " + handlingstr);
+//			LOGGER.severe("Ulovlig " + handlingstr);
 		}
 
 		return ok;
@@ -173,19 +173,19 @@ public class Dommer {
 		case TREKK:
 			if (kort != null) {
 				trekkFraBunke(spiller.hvem(), kort);
-				LOGGER.info("Utfører " + "[ " + spiller.hvem() + " " + handling + " " + kort + " med " + antalltrekk
-						+ " trekk ] ");
+//				LOGGER.info("Utfører " + "[ " + spiller.hvem() + " " + handling + " " + kort + " med " + antalltrekk
+//						+ " trekk ] ");
 			} else {
-				LOGGER.severe("Utfører " + "[ " + spiller.hvem() + " " + handling + " (null) med " + antalltrekk
-						+ " trekk ] ");
+//				LOGGER.severe("Utfører " + "[ " + spiller.hvem() + " " + handling + " (null) med " + antalltrekk
+//						+ " trekk ] ");
 			}
 			break;
 		case FORBI:
-			LOGGER.info("Utfører " + handlingstr);
+//			LOGGER.info("Utfører " + handlingstr);
 			antalltrekk = 0;
 			break;
 		case LEGGNED:
-			LOGGER.info("Utfører " + handlingstr);
+//			LOGGER.info("Utfører " + handlingstr);
 			Kort kortned = handling.getKort();
 			overste = kortned;
 			antalltrekk = 0;
@@ -193,9 +193,9 @@ public class Dommer {
 			break;
 		}
 
-		LOGGER.info("Nord har " + nordHand.toString());
-		LOGGER.info("Syd har " + sydHand.toString());
-		LOGGER.info("Toppen er " + overste); // TODO: kunne her sjekke at
+//		LOGGER.info("Nord har " + nordHand.toString());
+//		LOGGER.info("Syd har " + sydHand.toString());
+//		LOGGER.info("Toppen er " + overste); // TODO: kunne her sjekke at
 												// overste var lig det som er i
 												// spill sin tilbunke.
 	}

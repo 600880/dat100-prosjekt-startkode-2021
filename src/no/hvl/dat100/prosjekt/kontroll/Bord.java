@@ -24,7 +24,12 @@ public class Bord {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.constructor("Bord"));
+		bunkeFra = new KortSamling();
+		bunkeTil = new KortSamling();
+		
+		bunkeFra.leggTilAlle();
+		KortUtils.stokk(bunkeFra);
+
 		// TODO - END
 	}
 	
@@ -59,7 +64,7 @@ public class Bord {
 		
 		// TODO - START
 				
-		throw new UnsupportedOperationException(TODO.method());
+		return bunkeTil.erTom();
 
 		// TODO - END
 	}
@@ -73,7 +78,7 @@ public class Bord {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		return bunkeFra.erTom();
 	
 		// TODO - END
 		
@@ -88,7 +93,7 @@ public class Bord {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		return bunkeFra.getAntalKort();
 
 		// TODO - END
 	}
@@ -102,7 +107,7 @@ public class Bord {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		return bunkeTil.getAntalKort();
 
 		// TODO - END
 	}
@@ -115,7 +120,9 @@ public class Bord {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		Kort sisteKort = bunkeFra.taSiste();
+		bunkeTil.leggTil(sisteKort);
+		
 		// TODO - END
 		
 	}
@@ -130,7 +137,8 @@ public class Bord {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		Kort sisteKort = bunkeFra.taSiste();
+		return sisteKort;
 
 		// TODO - END
 	}
@@ -145,7 +153,8 @@ public class Bord {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		Kort sisteKort = bunkeTil.seSiste();
+		return sisteKort;
 
 		// TODO - END
 	}
@@ -160,7 +169,21 @@ public class Bord {
 
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		// Siste kort tas vare på i midlertidig variabel.
+		Kort sisteKort = bunkeTil.taSiste();
+
+		// Alle kort fra bunkeTil legges til bunkeFra,
+		for (Kort k : bunkeTil.getAllekort()) {
+			bunkeFra.leggTil(k);
+		}
+		
+		// Kortene i bunkeFra kan stokkes.
+		KortUtils.stokk(bunkeFra);
+		
+		// Det er fortsatt kort i bunkeTil som må fjernes, før siste kort kan legges til igjen.
+		bunkeTil.fjernAlle();
+		bunkeTil.leggTil(sisteKort);
+
 		// TODO - END
 	}
 		
@@ -175,7 +198,8 @@ public class Bord {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		bunkeTil.leggTil(k);
+		
 		// TODO - END
 				
 	}

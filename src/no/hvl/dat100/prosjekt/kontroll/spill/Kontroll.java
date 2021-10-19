@@ -270,17 +270,33 @@ public class Kontroll {
 	}
 
 	public void spillAuto() {
+		
+		int nordSeier = 0;
+		int sydSeier = 0;
 
-		while (!harVinner()) {
+		for (int i = 0; i < 100000; i++) {
+			
+			startSpill();
+			
+			while (!harVinner()) {
 
-			ISpiller spiller = turSpiller();
+				ISpiller spiller = turSpiller();
+	
+				if (spiller != null) {
+					spillSpiller(spiller);
+				}
+				else {
+					System.out.println("Feil i spillAuto - ingen spiller aktiv");
+				}
+			}
 
-			if (spiller != null) {
-				spillSpiller(spiller);
-			} else {
-				System.out.println("Feil i spillAuto - ingen spiller aktiv");
+			if (vinner() == Spillere.NORD) {
+				nordSeier++;
+			}
+			if (vinner() == Spillere.SYD) {
+				sydSeier++;
 			}
 		}
-
+		System.out.println("Nord vant: " + nordSeier + " ganger, og syd vant: " + sydSeier + " ganger.");
 	}
 }

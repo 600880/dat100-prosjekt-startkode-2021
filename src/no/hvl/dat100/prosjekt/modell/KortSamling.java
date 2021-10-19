@@ -1,5 +1,7 @@
 package no.hvl.dat100.prosjekt.modell;
 
+//import static org.junit.Assert.assertTrue;
+
 import no.hvl.dat100.prosjekt.TODO;
 import no.hvl.dat100.prosjekt.kontroll.dommer.Regler;
 
@@ -24,7 +26,8 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.constructor("KortSamling"));
+		samling = new Kort[MAKS_KORT];
+		
 		// TODO - END
 	}
 
@@ -52,7 +55,7 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		return antall;
 		
 		// TODO - END
 	}
@@ -66,7 +69,7 @@ public class KortSamling {
 		
 		// TODO - START
 				
-		throw new UnsupportedOperationException(TODO.method());
+		return antall == 0;
 		
 		// TODO - END
 	}
@@ -81,7 +84,9 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		samling[antall] = kort;
+		antall++;
+		
 		// TODO - END
 		
 	}
@@ -95,7 +100,16 @@ public class KortSamling {
 		// TODO - START
 		// Husk: bruk Regler.MAKS_KORT_FARGE for √• f√• antall kort per farge
 		
-		throw new UnsupportedOperationException(TODO.method());
+		antall = 0;
+		
+		for (Kortfarge f : Kortfarge.values()) {
+			
+			for (int i = 1; i <= Regler.MAKS_KORT_FARGE; i++) {
+				samling[antall] = new Kort(f, i);
+				antall++;
+			}
+			
+		}
 		// TODO - END
 	}
 
@@ -106,7 +120,9 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		samling = new Kort[MAKS_KORT];
+		antall = 0;
+		
 		// TODO - END
 	}
 	
@@ -120,7 +136,10 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		if (antall == 0) {
+			return null;
+		}
+		return samling[antall-1];
 
 		// TODO - END
 		
@@ -136,7 +155,15 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		if (antall == 0) {
+			return null;
+		}
+		
+		// Siste kort flyttes over i tmp-variabel. Siste kort slettes, og tmp returneres.
+		Kort tmp = samling[antall-1];
+		samling[antall-1] = null;
+		antall--;
+		return tmp;
 		
 		// TODO - END
 	}
@@ -152,8 +179,17 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
-		// return false;
+		if (kort == null) {
+			return false;
+		}
+		
+		for (int i = 0; i < antall; i++) {
+			if (samling[i].lik(kort)) {
+				return true;
+			}
+		}
+		return false;
+		
 		// TODO - END
 		
 	}
@@ -172,7 +208,27 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		if (kort == null) {
+			return false;
+		}
+		
+		for (int i = 0; i < antall; i++) {
+		
+			if (samling[i].lik(kort)) {
+			
+				// NÂr samling[i] fjernes, mÂ alle kort etter [i] flyttes ned et hakk.
+				for (int j = i; j < antall-1; j++) {
+					samling[j] = samling[j+1];
+				}
+		
+				// Siste posisjon skal nÂ vÊre tom.
+				samling[antall-1] = null;
+				antall--;
+				return true;
+			}
+			
+		}
+		return false;
 
 		// TODO - END
 	}
@@ -187,8 +243,13 @@ public class KortSamling {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
-
+		Kort[] alleKort = new Kort[antall];
+		
+		for (int i = 0; i < alleKort.length; i++) {
+			alleKort[i] = samling[i];
+		}
+		return alleKort;
+		
 		// TODO - END
 	
 	}
